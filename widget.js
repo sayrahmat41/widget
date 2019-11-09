@@ -156,11 +156,11 @@ function generate_widget(options) {
       this.widget.style.bottom ='10px';
       this.widgetButton.style.bottom='10px';
     }
-    if (this.position.horizotal=="right") {
+    if (this.position.horizontal=="right") {
       this.widget.style.right ='40px';
       this.widgetButton.style.right='40px';
     }
-  
+
     var container = document.getElementsByTagName('body')[0];
     container.appendChild(this.widget);
     container.appendChild(this.widgetButton);
