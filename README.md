@@ -8,7 +8,9 @@ Demo https://c0836f24.ngrok.io/
  2. Load CSS and Javascript
   <link rel="stylesheet" href="widget.css">
   <script src="widget.js"></script>
+
  4. Generate Widget
+ 
   <script>
     generate_widget({position: {vertical:"bottom" , horizontal: "right"} ,name: true, phone: true, email: false });
   </script>
