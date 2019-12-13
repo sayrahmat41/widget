@@ -94,7 +94,7 @@ function generate_widget(options) {
     check_required("phone",check_phone,"Invalid Phone"); 
   }
   if (this.options.email) {
-    check_required("email", validatePhone(qs('email').value.trim()),"Invalid email"); 
+    check_required("email", validateEmail(qs('email').value.trim()),"Invalid email"); 
   }
 
     //console.log(check);
