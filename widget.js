@@ -51,37 +51,54 @@ function generate_widget(options) {
       var re = /\S+@\S+\.\S+/;
       return re.test(String(email).toLowerCase());
     };
-    if (qs('name').value.trim() === '') {
-      this.fields.name = false;
-      qs('nemsg').style.display = 'block';
-    } else {
-      this.fields.name = true;
-      qs('nemsg').style.display = 'none';
-    };
-    if (qs('phone').value.trim() === '') {
-      this.fields.phone = false;
-      qs('pemsg').style.display = 'block';
-    } else if (validatePhone(qs('phone').value.trim())) {
-      this.fields.phone = false;
-      qs('pemsg').innerHTML = 'Invalid Phone!';
-      qs('pemsg').style.display = 'block';
-    } else {
-      this.fields.phone = true;
-      qs('pemsg').style.display = 'none';
-    };
-    if (qs('email').value.trim() === '') {
-      this.fields.email = false;
-      qs('eemsg').style.display = 'block';
-    } else if (!validateEmail(qs('email').value.trim())) {
-      this.fields.email = false
-      qs('eemsg').innerHTML = 'Invalid Email!';
-      qs('eemsg').style.display = 'block';
-    } else {
-      this.fields.email = true
-      qs('eemsg').style.display = 'none';
-    };
 
-    if (this.fields.name && this.fields.phone && this.fields.email) {
+    ///console.log(this.fields);
+
+    // this.fields
+    var check =true;
+    function check_required(fieldname, rules,errormessage) {
+
+      if (rules=="required") {
+        //console.log(qs(fieldname));
+        if (qs(fieldname).value.trim() === '') {
+          check = (check&&false);
+          qs(fieldname+'msg').style.display = 'block';
+        } else {
+          check = (check&&true);
+          qs(fieldname+'msg').style.display = 'none';
+        };
+
+      }
+      else{
+      //rules()
+      if (rules) {
+        check =  (check&&false);
+        //console.log(fieldname);
+        qs(fieldname+'msg').innerHTML = errormessage;
+        qs(fieldname+'msg').style.display = 'block';
+      } 
+    }
+
+  }
+
+  for ( var property in this.fields ) {
+    if (this.options[property]!=false) {
+      check_required(property, 'required') 
+    }
+  }
+
+  //custom validation
+  if (this.options.phone) {
+    var check_phone = (validatePhone(qs('phone').value.trim()));
+    console.log(check_phone);
+    check_required("phone",check_phone,"Invalid Phone"); 
+  }
+  if (this.options.email) {
+    check_required("email", validatePhone(qs('email').value.trim()),"Invalid email"); 
+  }
+
+    //console.log(check);
+    if (check) {
       this.valid = true
     };
   };
@@ -89,22 +106,22 @@ function generate_widget(options) {
   init.prototype.submit = function() {
     var self = this;
     var ENDPOINT = 'http://apilayer.net/api/validate?access_key=5c1f225561f81f36e80881da646e7f8a';
-      var makeRequest = function(url, method) {
+    var makeRequest = function(url, method) {
       var request = new XMLHttpRequest();
       request.onreadystatechange = function () {
         if (request.readyState !== 4) return;
-          if (request.status >= 200 && request.status < 300) {
+        if (request.status >= 200 && request.status < 300) {
           var res = JSON.parse(request.response);
           res.valid && (document.getElementsByClassName('widget_form-btn')[0].innerHTML = '<p class="success">we will call you back soon, thanks!</p><button type="submit" class="form-btn">call now</button>');
           if (!res.valid) {
             document.getElementsByClassName('widget_form-btn')[0].innerHTML = '<p class="danger">Make sure the phone number is valid!</p><button type="submit" class="form-btn">call now</button>';
-            qs('pemsg').innerHTML = 'Invalid Phone!';
-            qs('pemsg').style.display = 'block';
+            qs('phonemsg').innerHTML = 'Invalid Phone!';
+            qs('phonemsg').style.display = 'block';
           }
         } else {
           document.getElementsByClassName('widget_form-btn')[0].innerHTML = '<p class="danger">Make sure the phone number is valid!</p><button type="submit" class="form-btn">call now</button>';
-          qs('pemsg').innerHTML = 'Invalid Phone!';
-          qs('pemsg').style.display = 'block';
+          qs('phonemsg').innerHTML = 'Invalid Phone!';
+          qs('phonemsg').style.display = 'block';
           // If failed
           //alert(JSON.stringify(res));
         }
@@ -132,20 +149,20 @@ function generate_widget(options) {
   init.prototype.renderForm = function() {
     var form = document.getElementsByTagName('form')[0];
     if (!this.options.name && this.options.name !== undefined) {
-        form.innerHTML += ''
+      form.innerHTML += ''
     } else {
-      form .innerHTML += '<div class="form_field"><p id="nemsg" class="emsg">Required!</p><input type="text" id="name" name="name" placeholder="Your Name"></div>'
+      form .innerHTML += '<div class="form_field"><p id="namemsg" class="emsg">Required!</p><input type="text" id="name" name="name" placeholder="Your Name"></div>'
     }
     if (!this.options.phone && this.options.phone !== undefined) {
       form.innerHTML += ''
     } else {
-      form.innerHTML += '<div class="form_field"><p id="pemsg" class="emsg">Required!</p><input type="text" id="phone" name="phone" placeholder="Phone Number"></div>'
+      form.innerHTML += '<div class="form_field"><p id="phonemsg" class="emsg">Required!</p><input type="text" id="phone" name="phone" placeholder="Phone Number"></div>'
     }
     form.innerHTML += '<div class="form_field"><select name="purpose" id="purpose"><option value="content">I\'m Interested in Content</option><option value="design">I\'m Interested in Design.</option></select></div>'
     if (!this.options.email && this.options.email !== undefined) {
       form.innerHTML += ''
     } else {
-      form.innerHTML += '<div class="form_field"><p id="eemsg" class="emsg">Required!</p><input type="text" id="email" name="email" placeholder="Email"></div>'
+      form.innerHTML += '<div class="form_field"><p id="emailmsg" class="emsg">Required!</p><input type="text" id="email" name="email" placeholder="Email"></div>'
     }
     form.innerHTML += '<div class="widget_form-btn"><button type="submit" class="form-btn">call now</button></div>'
   }
