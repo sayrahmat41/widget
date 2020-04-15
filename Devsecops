@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-04-15T04:07:05.258Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36" etag="8ZgLN5EaWita65slPXG5" version="12.9.9" type="github">
+<mxfile host="app.diagrams.net" modified="2020-04-15T04:20:34.906Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36" etag="vdsXgUmeWkSeEnqpmezh" version="12.9.9" type="github">
   <diagram id="QqucGV3J2OwII_NT5fk7" name="Page-1">
     <mxGraphModel dx="3457" dy="1703" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -148,7 +148,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="UxfSNydmAcQLaiMnSqDY-2" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=https://raw.githubusercontent.com/kost/dockscan/master/docs/dockscan.png;" vertex="1" parent="1">
-          <mxGeometry x="1178" y="297" width="88.52" height="68" as="geometry" />
+          <mxGeometry x="1162" y="304" width="119.76" height="92" as="geometry" />
         </mxCell>
         <mxCell id="UxfSNydmAcQLaiMnSqDY-3" value="Production Approval" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1407" y="230" width="120" height="60" as="geometry" />
@@ -194,15 +194,6 @@
             <mxPoint x="1837" y="263" as="sourcePoint" />
             <mxPoint x="1724.9999999999995" y="270" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="UxfSNydmAcQLaiMnSqDY-13" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1545" y="341" as="sourcePoint" />
-            <mxPoint x="1545" y="257" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="UxfSNydmAcQLaiMnSqDY-14" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=https://www.drupal.org/files/project-images/Vault_VerticalLogo_FullColor.png;" vertex="1" parent="1">
-          <mxGeometry x="1475" y="322" width="149.29" height="149" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
